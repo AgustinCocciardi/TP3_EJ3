@@ -194,7 +194,7 @@ int main(int argc, char* argv[]){
     char *sport;
     float monto=0;
     int descuento;
-    printf("\n\n");
+    //printf("\n\n");
     //printf("\nMe preparo para entrar al while\n");
     while (strcmp(Memoria->pagoDni[j],"00") != 0)
     {
@@ -249,71 +249,59 @@ int main(int argc, char* argv[]){
         }
         
         //printf("\nLlego hasta aca 4\n");
-        printf("\nMes: %s\n", mes);
+        //printf("\nMes: %s\n", mes);
         if (strcmp(mes,"01") == 0)
         {
-            printf("\nEnero\n");
             montoEnero+=monto;
         }
         else if (strcmp(mes,"02") == 0)
         {
-            printf("\nFebrero\n");
             montoFebrero+=monto;
         }
         else if (strcmp(mes,"03") == 0)
         {
-            printf("\nMarzo\n");
             montoMarzo+=monto;
         }
         else if (strcmp(mes,"04") == 0)
         {
-            printf("\nAbril\n");
             montoAbril+=monto;
         }
         else if (strcmp(mes,"05") == 0)
         {
-            printf("\nMayo\n");
             montoMayo+=monto;
         }
         else if (strcmp(mes,"06") == 0)
         {
-            printf("\nJunio\n");
             montoJunio+=monto;
         }
         else if (strcmp(mes,"07") == 0)
         {
-            printf("\nJulio\n");
             montoJulio+=monto;
         }
         else if (strcmp(mes,"08") == 0)
         {
-            printf("\nAgosto\n");
             montoAgosto+=monto;
         }
         else if (strcmp(mes,"09") == 0)
         {
-            printf("\nSeptiembre\n");
             montoSeptiembre+=monto;
         }
         else if (strcmp(mes,"10") == 0)
         {
-            printf("\nOctubre\n");
             montoOctubre+=monto;
         }
         else if (strcmp(mes,"11") == 0)
         {
-            printf("\nNoviembre\n");
             montoNoviembre+=monto;
         }
         else
         {
-            printf("\nDiciembre\n");
             montoDiciembre+=monto;
         }
         j++;
     }
 
-    printf("\nMontos:\n");
+    printf("\nMontos cobrados por mes:\n");
     printf("\nMonto cobrado en enero: %.2f", montoEnero);
     printf("\nMonto cobrado en febrero: %.2f", montoFebrero);
     printf("\nMonto cobrado en marzo: %.2f", montoMarzo);
@@ -326,23 +314,23 @@ int main(int argc, char* argv[]){
     printf("\nMonto cobrado en octubre: %.2f", montoOctubre);
     printf("\nMonto cobrado en noviembre: %.2f", montoNoviembre);
     printf("\nMonto cobrado en diciembre: %.2f", montoDiciembre);
-    printf("\n");
+    printf("\n\n\n");
     
     //Detectar asociados que no pagaron cuota mensual
     char *socioActual;
     char *auxiliarFecha;
-    int b=0;
+    int b;
     int enero, febrero, marzo, abril , mayo , junio , julio , agosto , septiembre , octubre , noviembre , diciembre ;
     //char *auxiliarAnio;
     //char *auxiliarMes;
     for (int i = 0; i < contador; i++)
     {
-        printf("\nLlega hasta acá 7\n");
+        //printf("\nLlega hasta acá 7\n");
         socioActual=sociosClub[i].dni;
         //strcpy(socioActual,sociosClub[i].dni);
         strcat(socioActual,"\0");
-        printf("\nSocioActual: %s", socioActual);
-        printf("\nLlega hasta acá 8\n");
+        //printf("\nLlega hasta acá 8\n");
+        b=0;
         enero=0;
         febrero=0;
         marzo=0;
@@ -355,13 +343,21 @@ int main(int argc, char* argv[]){
         octubre=0;
         noviembre=0;
         diciembre=0;   
-        printf("\nLlega hasta acá 9\n");     
-        while (strcmp(Memoria->asistenciaDni[b],"00") != 0)
+        //printf("\nLlega hasta acá 9\n");     
+        while (strcmp(Memoria->pagoDni[b],"00") != 0)
         {
-            
-            if (strcmp(Memoria->pagoDni[b],socioActual) == 0)
+            //printf("\nLlega hasta acá 10\n");
+            /*strcpy(auxDocDni,Memoria->asistenciaDni[b]);
+            strcat(auxDocDni,"\0");
+            strcpy(auxFecha,Memoria->asistenciaDia[b]);
+            strcat(auxFecha,"\0");*/
+            //printf("\nSocioActual: '%s'\t DNI memoria: %s", socioActual, Memoria->pagoDni[b]);
+            //sleep(2);
+            if (strcmp(socioActual,Memoria->pagoDni[b]) == 0)
             {
-                strcpy(auxiliarFecha,Memoria->pagoDni[b]);
+                //printf("\nSon iguales\n");
+                //sleep(2);
+                strcpy(auxiliarFecha,Memoria->pagoFecha[b]);
                 anio = strtok(auxiliarFecha,delim);
                 mes = strtok(NULL,delim);
                 if (strcmp(mes,"01") == 0)
@@ -465,11 +461,13 @@ int main(int argc, char* argv[]){
         {
             printf("El socio %s no abono el mes de diciembre\n", socioActual);
         }
-        
+        printf("\n----------------\n");
+        //sleep(2);
     }
     
-
+    printf("\n\n\n");
     //Detectar asistencias en dias que no corresponden
+    printf("\nHasta aca llego 10\n");
     int a=0;
     char *auxDni;
     char *auxDia;
