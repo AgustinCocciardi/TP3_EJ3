@@ -171,48 +171,56 @@ int main(int argc, char* argv[]){
     
 
     //Calcular el monto mensual (Revisar descuentos)
-    int montoEnero=0;
-    int montoFebrero=0;
-    int montoMarzo=0;
-    int montoAbril=0;
-    int montoMayo=0;
-    int montoJunio=0;
-    int montoJulio=0;
-    int montoAgosto=0;
-    int montoSeptiembre=0;
-    int montoOctubre=0;
-    int montoNoviembre=0;
-    int montoDiciembre=0;
+    float montoEnero=0;
+    float montoFebrero=0;
+    float montoMarzo=0;
+    float montoAbril=0;
+    float montoMayo=0;
+    float montoJunio=0;
+    float montoJulio=0;
+    float montoAgosto=0;
+    float montoSeptiembre=0;
+    float montoOctubre=0;
+    float montoNoviembre=0;
+    float montoDiciembre=0;
     int j=0;
     char auxDocDni[9];
     char auxFecha[11];
+    char dniDelSocio[9];
     char *anio;
     char *mes;
     char *dia;
-    char delim[2] = "-";
+    char delim[3] = "-\0";
     char *sport;
     float monto=0;
     int descuento;
     printf("\n\n");
-    printf("\nMe preparo para entrar al while\n");
+    //printf("\nMe preparo para entrar al while\n");
     while (strcmp(Memoria->pagoDni[j],"00") != 0)
     {
         descuento = 0;
         strcpy(auxDocDni,Memoria->pagoDni[j]);
         strcpy(auxFecha,Memoria->pagoFecha[j]);
-        printf("\nDNI: %s\tFecha: %s\n", auxDocDni, auxFecha);
-        //LOGRÈ QUE LLEGUE HASTA ACÁ
+        //printf("\nDNI: %s\tFecha: %s\n", auxDocDni, auxFecha);
         anio = strtok(auxFecha,delim);
         mes = strtok(NULL,delim);
         dia = strtok(NULL,delim);
+        //printf("\nDia %s Mes %s Anio %s\n", dia, mes, anio);
+        //printf("\nLlego hasta aca 1\n");
+        //LOGRÈ QUE LLEGUE HASTA ACÁ
         for (int i = 0; i < contador; i++)
         {
+            strcpy(dniDelSocio,sociosClub[i].dni);
+            strcat(auxDocDni,"\0");
+            //printf("\n%s\t%s\n",auxDocDni, dniDelSocio);
             if ((strcmp(auxDocDni,sociosClub[i].dni)) == 0)
             {
+                //printf("Son iguales");
                 strcpy(sport,sociosClub[i].deporte);
                 break;
             }
         }
+        //printf("\nLlego hasta aca 2\n");
         if (strcmp(dia,"01") == 0 || strcmp(dia,"02") == 0 || strcmp(dia,"03") == 0 || strcmp(dia,"04") == 0 || strcmp(dia,"05") == 0 || strcmp(dia,"06") == 0 || strcmp(dia,"07") == 0 || strcmp(dia,"08") == 0 || strcmp(dia,"09") == 0 || strcmp(dia,"10") == 0)
         {
             descuento=1;
@@ -234,111 +242,142 @@ int main(int argc, char* argv[]){
             monto=natacionPrecio;
         }
 
+        //printf("\nLlego hasta aca 3\n");
         if (descuento == 0)
         {
             monto-=(monto*10/100);
         }
         
+        //printf("\nLlego hasta aca 4\n");
+        printf("\nMes: %s\n", mes);
         if (strcmp(mes,"01") == 0)
         {
+            printf("\nEnero\n");
             montoEnero+=monto;
         }
         else if (strcmp(mes,"02") == 0)
         {
+            printf("\nFebrero\n");
             montoFebrero+=monto;
         }
         else if (strcmp(mes,"03") == 0)
         {
+            printf("\nMarzo\n");
             montoMarzo+=monto;
         }
         else if (strcmp(mes,"04") == 0)
         {
+            printf("\nAbril\n");
             montoAbril+=monto;
         }
         else if (strcmp(mes,"05") == 0)
         {
+            printf("\nMayo\n");
             montoMayo+=monto;
         }
         else if (strcmp(mes,"06") == 0)
         {
+            printf("\nJunio\n");
             montoJunio+=monto;
         }
         else if (strcmp(mes,"07") == 0)
         {
+            printf("\nJulio\n");
             montoJulio+=monto;
         }
         else if (strcmp(mes,"08") == 0)
         {
+            printf("\nAgosto\n");
             montoAgosto+=monto;
         }
         else if (strcmp(mes,"09") == 0)
         {
+            printf("\nSeptiembre\n");
             montoSeptiembre+=monto;
         }
         else if (strcmp(mes,"10") == 0)
         {
+            printf("\nOctubre\n");
             montoOctubre+=monto;
         }
         else if (strcmp(mes,"11") == 0)
         {
+            printf("\nNoviembre\n");
             montoNoviembre+=monto;
         }
         else
         {
+            printf("\nDiciembre\n");
             montoDiciembre+=monto;
         }
         j++;
     }
-    if (montoEnero > 0)
+
+    printf("\nMontos:\n");
+    printf("\nMonto cobrado en enero: %.2f", montoEnero);
+    printf("\nMonto cobrado en febrero: %.2f", montoFebrero);
+    printf("\nMonto cobrado en marzo: %.2f", montoMarzo);
+    printf("\nMonto cobrado en abril: %.2f", montoAbril);
+    printf("\nMonto cobrado en mayo: %.2f", montoMayo);
+    printf("\nMonto cobrado en junio: %.2f", montoJunio);
+    printf("\nMonto cobrado en julio: %.2f", montoJulio);
+    printf("\nMonto cobrado en agosto: %.2f", montoAgosto);
+    printf("\nMonto cobrado en septiembre: %.2f", montoSeptiembre);
+    printf("\nMonto cobrado en octubre: %.2f", montoOctubre);
+    printf("\nMonto cobrado en noviembre: %.2f", montoNoviembre);
+    printf("\nMonto cobrado en diciembre: %.2f", montoDiciembre);
+    printf("\n");
+    /*if (montoEnero > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoEnero);
+        printf("Monto cobrado en enero: %f\n", montoEnero);
     }
     if (montoFebrero > 0)
     {
-        printf("Monto cobrado en febrero: %d\n", montoFebrero);
+        printf("Monto cobrado en febrero: %f\n", montoFebrero);
     }
     if (montoMarzo > 0)
     {
-        printf("Monto cobrado en marzo: %d\n", montoMarzo);
+        printf("Monto cobrado en marzo: %f\n", montoMarzo);
     }
     if (montoAbril > 0)
     {
-        printf("Monto cobrado en abril: %d\n", montoAbril);
+        printf("Monto cobrado en abril: %f\n", montoAbril);
     }
     if (montoMayo > 0)
     {
-        printf("Monto cobrado en Mayo: %d\n", montoMayo);
+        printf("Monto cobrado en Mayo: %f\n", montoMayo);
     }
     if (montoJunio > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoJunio);
+        printf("Monto cobrado en enero: %f\n", montoJunio);
     }
     if (montoJulio > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoJulio);
+        printf("Monto cobrado en enero: %f\n", montoJulio);
     }
     if (montoAgosto > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoAgosto);
+        printf("Monto cobrado en enero: %f\n", montoAgosto);
     }
     if (montoSeptiembre > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoSeptiembre);
+        printf("Monto cobrado en enero: %f\n", montoSeptiembre);
     }
     if (montoOctubre > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoOctubre);
+        printf("Monto cobrado en enero: %f\n", montoOctubre);
     }
     if (montoNoviembre > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoNoviembre);
+        printf("Monto cobrado en enero: %f\n", montoNoviembre);
     }
     if (montoDiciembre > 0)
     {
-        printf("Monto cobrado en enero: %d\n", montoDiciembre);
-    }
+        printf("Monto cobrado en enero: %f\n", montoDiciembre);
+    }*/
     
     //Detectar asociados que no pagaron cuota mensual
+    printf("\nLlega hasta acá 6\n");
     char *socioActual;
     char *auxiliarFecha;
     char *auxiliarAnio;
