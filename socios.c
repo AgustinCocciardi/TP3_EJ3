@@ -331,6 +331,8 @@ int main(int argc, char* argv[]){
     //Detectar asociados que no pagaron cuota mensual
     char *socioActual;
     char *auxiliarFecha;
+    int b=0;
+    int enero, febrero, marzo, abril , mayo , junio , julio , agosto , septiembre , octubre , noviembre , diciembre ;
     //char *auxiliarAnio;
     //char *auxiliarMes;
     for (int i = 0; i < contador; i++)
@@ -339,12 +341,24 @@ int main(int argc, char* argv[]){
         socioActual=sociosClub[i].dni;
         //strcpy(socioActual,sociosClub[i].dni);
         strcat(socioActual,"\0");
-        printf("\nLlega hasta acá 8\n");
         printf("\nSocioActual: %s", socioActual);
-        int b=0;
-        int enero = 0, febrero = 0, marzo = 0, abril = 0, mayo = 0, junio = 0, julio = 0, agosto = 0, septiembre = 0, octubre = 0, noviembre = 0, diciembre = 0;
+        printf("\nLlega hasta acá 8\n");
+        enero=0;
+        febrero=0;
+        marzo=0;
+        abril=0;
+        mayo=0;
+        junio=0;
+        julio=0;
+        agosto=0;
+        septiembre=0;
+        octubre=0;
+        noviembre=0;
+        diciembre=0;   
+        printf("\nLlega hasta acá 9\n");     
         while (strcmp(Memoria->asistenciaDni[b],"00") != 0)
         {
+            
             if (strcmp(Memoria->pagoDni[b],socioActual) == 0)
             {
                 strcpy(auxiliarFecha,Memoria->pagoDni[b]);
@@ -398,7 +412,7 @@ int main(int argc, char* argv[]){
                 {
                     diciembre = 1;
                 }
-                
+
             }
             
             b++;
