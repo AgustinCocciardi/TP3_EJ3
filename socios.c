@@ -157,15 +157,18 @@ int main(int argc, char* argv[]){
     sem_t *seasistencia;
     sem_t *sesocios;
 
+    
     //Creo e inicializo los semáforos
     semutex = sem_open("/mutex",O_CREAT|O_EXCL,0644,1);               //Inicializo el Mutex en 1
     sepagos = sem_open("/pagos",O_CREAT|O_EXCL,0644,1);               //Inicializo el semaforo Pagos en 1
     seasistencia = sem_open("/asistencia",O_CREAT|O_EXCL,0644,0);     //Inicializo el semaforo Asistencia en 0
     sesocios = sem_open("/socios",O_CREAT|O_EXCL,0644,0);             //Inicializo el semaforo Socios en 0
-
+    
     //Hago un P() a mi semaforo de socios. Como está inicializado en 0, me quedo esperando a que el proceso asistencia haga un V()
     sem_wait(sesocios);
     sem_wait(semutex);  //Tomo el Mutex para leer de memoria compartida
+    //printf("\nHasta acá llegó\n");
+    
 
     //Calcular el monto mensual (Revisar descuentos)
     int montoEnero=0;
@@ -181,7 +184,7 @@ int main(int argc, char* argv[]){
     int montoNoviembre=0;
     int montoDiciembre=0;
     int j=0;
-    char auxDocDni;
+    char auxDocDni[9];
     char auxFecha[11];
     char *anio;
     char *mes;
@@ -190,11 +193,15 @@ int main(int argc, char* argv[]){
     char *sport;
     float monto=0;
     int descuento;
+    printf("\n\n");
+    printf("\nMe preparo para entrar al while\n");
     while (strcmp(Memoria->pagoDni[j],"00") != 0)
     {
         descuento = 0;
         strcpy(auxDocDni,Memoria->pagoDni[j]);
         strcpy(auxFecha,Memoria->pagoFecha[j]);
+        printf("\nDNI: %s\tFecha: %s\n", auxDocDni, auxFecha);
+        //LOGRÈ QUE LLEGUE HASTA ACÁ
         anio = strtok(auxFecha,delim);
         mes = strtok(NULL,delim);
         dia = strtok(NULL,delim);
@@ -475,6 +482,7 @@ int main(int argc, char* argv[]){
         a++;
     }
     
+    printf("\nTerminó de leer de memoria compartida\n");
 
     //Cierro los semaforos
     sem_close(semutex);
@@ -488,5 +496,6 @@ int main(int argc, char* argv[]){
     sem_unlink("/asistencia");
     sem_unlink("/socios");
 
+    printf("\nRecursos cerrados\n");
 }
 

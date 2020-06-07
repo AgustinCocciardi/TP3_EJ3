@@ -1,0 +1,3 @@
+Juan;Lopez;11111111;Futbol;Lunes
+Ariel;Hernandez;22222222;Basquet;Sabado
+Monica;Perez;33333333;Natacion;Miercoles

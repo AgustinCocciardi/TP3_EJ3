@@ -94,6 +94,7 @@ int main(int argc, char* argv[]){
     sem_wait(seasistencia);
     sem_wait(semutex);  //Tomo el Mutex para escribir en memoria compartida
 
+    printf("\nEmpezó a escribir en memoria compartida\n");
     int cantidad = 0;
     while (feof(archivoAsistencia) == 0)
     {
@@ -110,6 +111,7 @@ int main(int argc, char* argv[]){
     //Usaré la cadena 00 como corte de control
     strcpy(Memoria->pagoDni[cantidad],"00");
     strcpy(Memoria->pagoFecha[cantidad],"00");
+    printf("\nTerminó de escribir en memoria compartida\n");
 
     //Termine de escribir en memoria compartida
     sem_post(semutex); //Hago un V() al mutex
@@ -122,5 +124,6 @@ int main(int argc, char* argv[]){
 
     //Cierro el archivo
     fclose(archivoAsistencia);
+    printf("\nRecursos cerrados\n");
 }
 
