@@ -116,12 +116,13 @@ int main(int argc, char* argv[]){
         i++;
     }
 
-    /*
+
+    printf("\nSocios del club\n");
     for (int i = 0; i < contador; i++)
     {
-        printf("Nombre y apellido: %s %s\t DNI: %s\t Deporte y Dia: %s %s\n", sociosClub[i].nombre, sociosClub[i].apellido, sociosClub[i].dia, sociosClub[i].deporte, sociosClub[i].dia);
+        printf("Nombre y apellido: %s %s\t DNI: %s\t Deporte y Dia: %s %s\n", sociosClub[i].nombre, sociosClub[i].apellido, sociosClub[i].dni, sociosClub[i].deporte, sociosClub[i].dia);
     }
-    */
+    printf("\n");
     
     //Cierro el archivo
     fclose(archivoSocios);
@@ -317,6 +318,7 @@ int main(int argc, char* argv[]){
     printf("\n\n\n");
     
     //Detectar asociados que no pagaron cuota mensual
+    printf("\nPagos de cuota mensual pendientes: \n");
     char *socioActual;
     char *auxiliarFecha;
     int b;
@@ -466,30 +468,36 @@ int main(int argc, char* argv[]){
     }
     
     printf("\n\n\n");
+    printf("\nAsistencias en dias que no corresponden: \n");
     //Detectar asistencias en dias que no corresponden
-    printf("\nHasta aca llego 10\n");
+    //printf("\nHasta aca llego 10\n");
     int a=0;
-    char *auxDni;
-    char *auxDia;
-    while (strcmp(Memoria->asistenciaDni[a],"00") != 0)
+    //char auxDni[9];
+    //char auxDia[10];
+    while (strcmp(Memoria->asistenciaDni[a],"") != 0)
     {
-        strcpy(auxDni,Memoria->asistenciaDni[a]);
-        strcpy(auxDia,Memoria->asistenciaDia[a]);
+        //printf("\n'%s'\t'%s'\n",Memoria->asistenciaDni[a],Memoria->asistenciaDia[a]);
+        //sleep(1);
+        //strcpy(auxDni,Memoria->asistenciaDni[a]);
+        //strcpy(auxDia,Memoria->asistenciaDia[a]);
+        //printf("\n'%s'\t'%s'\n",auxDni,auxDia);
         for (int i = 0; i < contador; i++)
         {
-            if (strcmp(auxDni,sociosClub[i].dni) == 0)
+            if (strcmp(Memoria->asistenciaDni[a],sociosClub[i].dni) == 0)
             {
-                if (strcmp(auxDia,sociosClub[i].dia) != 0)
+                if (strcmp(Memoria->asistenciaDia[a],sociosClub[i].dia) != 0)
                 {
-                    printf("El socio %s asiste el dia %s cuando debería asistir el dia %s", auxDni,auxDia,sociosClub[i].dia);
+                    printf("El socio %s asiste el dia %s cuando debería asistir el dia %s", Memoria->asistenciaDni[a],Memoria->asistenciaDia[a],sociosClub[i].dia);
                 }
                 break;
             }
         }
+        
         a++;
     }
     
-    printf("\nTerminó de leer de memoria compartida\n");
+    printf("\n\n");
+    //printf("\nTerminó de leer de memoria compartida\n");
 
     //Cierro los semaforos
     sem_close(semutex);
@@ -503,6 +511,6 @@ int main(int argc, char* argv[]){
     sem_unlink("/asistencia");
     sem_unlink("/socios");
 
-    printf("\nRecursos cerrados\n");
+    //printf("\nRecursos cerrados\n");
 }
 
