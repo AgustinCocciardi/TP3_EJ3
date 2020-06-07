@@ -327,64 +327,20 @@ int main(int argc, char* argv[]){
     printf("\nMonto cobrado en noviembre: %.2f", montoNoviembre);
     printf("\nMonto cobrado en diciembre: %.2f", montoDiciembre);
     printf("\n");
-    /*if (montoEnero > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoEnero);
-    }
-    if (montoFebrero > 0)
-    {
-        printf("Monto cobrado en febrero: %f\n", montoFebrero);
-    }
-    if (montoMarzo > 0)
-    {
-        printf("Monto cobrado en marzo: %f\n", montoMarzo);
-    }
-    if (montoAbril > 0)
-    {
-        printf("Monto cobrado en abril: %f\n", montoAbril);
-    }
-    if (montoMayo > 0)
-    {
-        printf("Monto cobrado en Mayo: %f\n", montoMayo);
-    }
-    if (montoJunio > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoJunio);
-    }
-    if (montoJulio > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoJulio);
-    }
-    if (montoAgosto > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoAgosto);
-    }
-    if (montoSeptiembre > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoSeptiembre);
-    }
-    if (montoOctubre > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoOctubre);
-    }
-    if (montoNoviembre > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoNoviembre);
-    }
-    if (montoDiciembre > 0)
-    {
-        printf("Monto cobrado en enero: %f\n", montoDiciembre);
-    }*/
     
     //Detectar asociados que no pagaron cuota mensual
-    printf("\nLlega hasta acá 6\n");
     char *socioActual;
     char *auxiliarFecha;
-    char *auxiliarAnio;
-    char *auxiliarMes;
+    //char *auxiliarAnio;
+    //char *auxiliarMes;
     for (int i = 0; i < contador; i++)
     {
-        strcpy(socioActual,sociosClub[i].dni);
+        printf("\nLlega hasta acá 7\n");
+        socioActual=sociosClub[i].dni;
+        //strcpy(socioActual,sociosClub[i].dni);
+        strcat(socioActual,"\0");
+        printf("\nLlega hasta acá 8\n");
+        printf("\nSocioActual: %s", socioActual);
         int b=0;
         int enero = 0, febrero = 0, marzo = 0, abril = 0, mayo = 0, junio = 0, julio = 0, agosto = 0, septiembre = 0, octubre = 0, noviembre = 0, diciembre = 0;
         while (strcmp(Memoria->asistenciaDni[b],"00") != 0)
@@ -392,49 +348,49 @@ int main(int argc, char* argv[]){
             if (strcmp(Memoria->pagoDni[b],socioActual) == 0)
             {
                 strcpy(auxiliarFecha,Memoria->pagoDni[b]);
-                auxiliarAnio = strtok(auxiliarFecha,delim);
-                auxiliarMes = strtok(NULL,delim);
-                if (strcmp(auxiliarMes,"01") == 0)
+                anio = strtok(auxiliarFecha,delim);
+                mes = strtok(NULL,delim);
+                if (strcmp(mes,"01") == 0)
                 {
                     enero = 1;
                 }
-                else if (strcmp(auxiliarMes,"02") == 0)
+                else if (strcmp(mes,"02") == 0)
                 {
                     febrero = 1;
                 }
-                else if (strcmp(auxiliarMes,"03") == 0)
+                else if (strcmp(mes,"03") == 0)
                 {
                     marzo = 1;
                 }
-                else if (strcmp(auxiliarMes,"04") == 0)
+                else if (strcmp(mes,"04") == 0)
                 {
                     abril = 1;
                 }
-                else if (strcmp(auxiliarMes,"05") == 0)
+                else if (strcmp(mes,"05") == 0)
                 {
                     mayo = 1;
                 }
-                else if (strcmp(auxiliarMes,"06") == 0)
+                else if (strcmp(mes,"06") == 0)
                 {
                     junio = 1;
                 }
-                else if (strcmp(auxiliarMes,"07") == 0)
+                else if (strcmp(mes,"07") == 0)
                 {
                     julio = 1;
                 }
-                else if (strcmp(auxiliarMes,"08") == 0)
+                else if (strcmp(mes,"08") == 0)
                 {
                     agosto = 1;
                 }
-                else if (strcmp(auxiliarMes,"09") == 0)
+                else if (strcmp(mes,"09") == 0)
                 {
                     septiembre = 1;
                 }
-                else if (strcmp(auxiliarMes,"10") == 0)
+                else if (strcmp(mes,"10") == 0)
                 {
                     octubre = 1;
                 }
-                else if (strcmp(auxiliarMes,"11") == 0)
+                else if (strcmp(mes,"11") == 0)
                 {
                     noviembre = 1;
                 }
