@@ -1,3 +1,5 @@
 11111111;Lunes
 22222222;Sabado
 33333333;Miercoles
+40231779;Domingo
+46214753;Domingo

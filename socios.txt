@@ -1,3 +1,5 @@
 Juan;Lopez;11111111;Futbol;Lunes
-Ariel;Hernandez;22222222;Basquet;Sabado
-Monica;Perez;33333333;Natacion;Miercoles
+Ariel;Hernandez;22222222;Basquet;Viernes
+Monica;Perez;33333333;Natacion;Sabado
+Agustin;Cocciardi;40231779;Natacion;Sabado
+Valentin;Cocciardi;46214753;Voley;Martes

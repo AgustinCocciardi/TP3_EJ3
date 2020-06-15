@@ -485,9 +485,49 @@ int main(int argc, char* argv[]){
         {
             if (strcmp(Memoria->asistenciaDni[a],sociosClub[i].dni) == 0)
             {
-                if (strcmp(Memoria->asistenciaDia[a],sociosClub[i].dia) != 0)
+                if (strcmp(sociosClub[i].deporte,"Futbol") == 0)
                 {
-                    printf("El socio %s asiste el dia %s cuando debería asistir el dia %s", Memoria->asistenciaDni[a],Memoria->asistenciaDia[a],sociosClub[i].dia);
+                    if (strcmp(Memoria->asistenciaDia[a],"Lunes") == 0 || strcmp(Memoria->asistenciaDia[a],"Miercoles") == 0)
+                    {
+                        /*SKIP*/
+                    }
+                    else
+                    {
+                        printf("El socio %s asiste el dia %s cuando debería asistir el día 'Lunes' o el día 'Miercoles'\n",Memoria->asistenciaDni[a],Memoria->asistenciaDia[a]);
+                    }
+                }
+                if (strcmp(sociosClub[i].deporte,"Voley") == 0)
+                {
+                    if (strcmp(Memoria->asistenciaDia[a],"Martes") == 0 || strcmp(Memoria->asistenciaDia[a],"Jueves") == 0)
+                    {
+                        /*SKIP*/
+                    }
+                    else
+                    {
+                        printf("El socio %s asiste el dia %s cuando debería asistir el día 'Martes' o el día 'Jueves'\n",Memoria->asistenciaDni[a],Memoria->asistenciaDia[a]);
+                    }
+                }
+                if (strcmp(sociosClub[i].deporte,"Basquet") == 0)
+                {
+                    if (strcmp(Memoria->asistenciaDia[a],"Viernes") == 0)
+                    {
+                        /*SKIP*/
+                    }
+                    else
+                    {
+                        printf("El socio %s asiste el dia %s cuando debería asistir el día 'Viernes'\n",Memoria->asistenciaDni[a],Memoria->asistenciaDia[a]);
+                    }
+                }
+                if (strcmp(sociosClub[i].deporte,"Natacion") == 0)
+                {
+                    if (strcmp(Memoria->asistenciaDia[a],"Sabado") == 0)
+                    {
+                        /*SKIP*/
+                    }
+                    else
+                    {
+                        printf("El socio %s asiste el dia %s cuando debería asistir el día 'Sabado'\n",Memoria->asistenciaDni[a],Memoria->asistenciaDia[a]);
+                    }
                 }
                 break;
             }
